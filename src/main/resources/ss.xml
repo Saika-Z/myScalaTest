@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<configuration>
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>/data/dfs</value>
+        <description>Determines where on the local filesystem an DFS data node should store its blocks</description>
+    </property>
+    <property>
+        <name>dfs.replication</name>
+        <value>3</value>
+        <description>Default block replication</description>
+    </property>
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/data/dfsname</value>
+        <description>Determines where on the local filesystem the DFS name node should store the name table(fsimage)</description>
+    </property>
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
+        <description>enable permission checking in HDFS</description>
+    </property>
+
+    <property>
+        <name>dfs.nameservices</name>
+        <value>mycluster</value>
+        <description>Comma-separated list of nameservices</description>
+    </property>
+
+    <property>
+        <name>dfs.ha.namenodes.mycluster</name>
+        <value>nn1,nn2</value>
+        <description>The prefix for a given nameservice, contains a comma-separated list of namenodes for a given nameservice</description>
+    </property>
+
+    <property>
+        <name>dfs.namenode.rpc-address.mycluster.nn1</name>
+        <value>nn1:9000</value>
+        <description>A comma separated list of auxiliary ports for the NameNode to listen on</description>
+    </property>
+    <property>
+        <name>dfs.namenode.rpc-address.mycluster.nn2</name>
+        <value>nn2:9000</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.http-address.mycluster.nn1</name>
+        <value>nn1:50070</value>
+        <description>The address and the base port where the dfs namenode web ui will listen on</description>
+    </property>
+    <property>
+        <name>dfs.namenode.http-address.mycluster.nn2</name>
+        <value>nn2:50070</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.shared.edits.dir</name>
+        <value>qjournal://nn1:8485;hadoop102:8485;nn2:8485/mycluster</value>
+        <description>A directory on shared storage between the multiple namenodes in an HA cluster</description>
+    </property>
+
+    <property>
+        <name>dfs.journalnode.edits.dir</name>
+        <value>/data/hadoop/journalnode</value>
+        <description>The directory where the journal edit files are stored.</description>
+    </property>
+
+    <property>
+        <name>dfs.blocksize</name>
+        <value>268435456</value>
+        <description>The default block size for new files</description>
+    </property>
+
+    <property>
+        <name>fs.trash.interval</name>
+        <value>2880</value>
+    </property>
+    <property>
+        <name>dfs.datanode.du.reserved</name>
+        <value>2147483648</value>
+        <description>Reserved space in bytes per volume</description>
+    </property>
+    <property>
+        <name>dfs.ha.automatic-failover.enabled</name>
+        <value>true</value>
+    </property>
+
+</configuration>
