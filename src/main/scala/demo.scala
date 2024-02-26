@@ -28,7 +28,6 @@ object demo {
 
     println(bean)
 
-
   }
 
 }
