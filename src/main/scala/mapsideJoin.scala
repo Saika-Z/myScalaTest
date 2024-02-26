@@ -13,14 +13,26 @@ import org.apache.spark.sql.SparkSession
 object mapsideJoin {
 
   def main(args: Array[String]): Unit = {
+    val  arrow =  "===================> "
+
     val sparkSession = SparkSession.builder().master("local[*]").appName("BigRDD Join SmallRDD").getOrCreate()
     val sc = sparkSession.sparkContext
     val list1 = List(("jame", 23), ("wade", 3), ("kobe", 24))
     val list2 = List(("jame", 13), ("wade", 6), ("kobe", 16))
     val bigRDD = sc.makeRDD(list1)
     val smallRDD = sc.makeRDD(list2)
-    println(bigRDD.getNumPartitions)
-    println(smallRDD.getNumPartitions)
+
+    printf("%-8s\t%-8s\t%-8s\n","bigRDD",arrow,bigRDD.getNumPartitions)
+    printf("%-8s\t%-8s\t%-8s\n","smallRDD",arrow,smallRDD.getNumPartitions)
+    printf("%s\t%s\t%s\n","smallRDD",arrow,smallRDD.getNumPartitions)
+
+    println(
+      s"""
+         |driver端rdd不broadcast广播smallRDD到各executor，RDD不能被broadcast，需要转换成数组array
+         |各个executor端的task读取广播 value
+         |         partition.map(element => {
+         |          println(joinUtil(element, smallRDDBV))joinUtil(element, smallRDDBV)})})joinedRDD.foreach(x => println(x))}
+         |""".stripMargin)
     // driver端rdd不broadcast广播smallRDD到各executor，RDD不能被broadcast，需要转换成数组array
     val smallRDDB = sc.broadcast(smallRDD.collect())
     /*  val joinedRDD = bigRDD.mapPartitions(partition => {
