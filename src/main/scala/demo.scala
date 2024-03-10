@@ -28,27 +28,6 @@ object demo {
 
     println(bean)
 
-    /*
-
-        val session = SparkSession.builder().master("local[*]").appName("test file").getOrCreate()
-        val inpath = "E:\\file\\wechat\\WeChat Files\\zhaowenqingtnt\\FileStorage\\File\\2023-08\\123.csv"
-        val readDF: DataFrame = session.read.format("CSV").option("header","true").load(inpath).drop("1")
-
-        val frame = readDF.toDF("EXAMINAIM", "name", "en", "gender", "age", "chname", "result", "unit")
-        frame.select(col="EXAMINAIM").distinct().show()
-        frame.where(frame.col("name")<=>"安维智")
-          .createTempView("map")
-
-
-
-        session.sql(
-          """
-            |select name,concat_ws(" ",en,EXAMINAIM,gender,age,chname,result,unit) as en from map
-            |-- group by name
-            |
-            |""".stripMargin).collect().foreach(println)
-    */
-
   }
 
 }
