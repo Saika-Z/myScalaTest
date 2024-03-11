@@ -24,7 +24,7 @@ object testNum {
     printf("后序: %s\n", i2.toString)
     printf("层序: %s\n", i3.toString)
 
-    println(intersection(Array(1,2,2,1),Array(2,2)))
+    println(customSortString("cba","abcd"))
   }
 
   def findAllPeople(n: Int, meetings: Array[Array[Int]], firstPerson: Int): List[Int] = {
@@ -46,9 +46,9 @@ object testNum {
       .toList.sorted
   }
 
-  def intersection(nums1: Array[Int], nums2: Array[Int]): Array[Int] = {
-    nums1.distinct.filter(nums2.distinct.contains(_))
-        
+  def customSortString(order: String, s: String): String = {
+    val dir: Map[Char, Int] = order.zipWithIndex.toMap
+    s.sortBy((s: Char) => dir.getOrElse(s, 26))
     }
 
 }

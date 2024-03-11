@@ -25,7 +25,7 @@ public class runTestCode {
         System.out.printf("后序: %s\n",integers2.toString());
         System.out.printf("层序: %s\n",integers3.toString());*/
         ListNode listNode = ListNode.createListNode(new int[]{3, 2, 0, -1});
-        System.out.println(new testSolution().hasCycle(listNode));
+        new testSolution().customSortString("kqep","pekeq");
 
 
 
