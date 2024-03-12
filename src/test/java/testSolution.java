@@ -12,17 +12,18 @@ import java.util.*;
  *************************************************************************************/
 public class testSolution {
 
-    public boolean hasCycle(ListNode head) {
-        if (head == null) return false;
-        ListNode fast = head, slow = head;
-        while (fast.next != null && fast.next.next != null) {
-            slow = head.next;
-            fast = head.next.next;
-            if (slow == fast) {
-                return true;
-            }
+    public ListNode removeZeroSumSublists(ListNode head) {
+        if (head == null) return head;
+        int sum = 0;
+        ListNode current = head;
+        while (current != null) {
+            sum += current.val;
+            if (sum == 0)
+                return removeZeroSumSublists(current.next);
+            current = current.next;
         }
-        return false;
+        head.next = removeZeroSumSublists(head.next);
+        return head;
     }
 
     public String mySubstring(Integer[] arr, String s) {

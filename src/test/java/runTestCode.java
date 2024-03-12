@@ -24,9 +24,9 @@ public class runTestCode {
         System.out.printf("前序: %s\n",integers1.toString());
         System.out.printf("后序: %s\n",integers2.toString());
         System.out.printf("层序: %s\n",integers3.toString());*/
-        ListNode listNode = ListNode.createListNode(new int[]{3, 2, 0, -1});
-        System.out.println(new testSolution().hasCycle(listNode));
-
+        ListNode listNode = ListNode.createListNode(new int[]{1,2,-3,3,1});
+        ListNode s1 = new testSolution().removeZeroSumSublists(listNode);
+        ListNode.printListNode(s1);
 
 
     }
