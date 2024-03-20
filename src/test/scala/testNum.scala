@@ -1,6 +1,7 @@
 import scala.annotation.tailrec
 import scala.collection.mutable
 import scala.collection.mutable.LinkedList
+import scala.util.control.Breaks.break
 
 /** *************************************************************************************
  * *
@@ -15,16 +16,19 @@ import scala.collection.mutable.LinkedList
 object testNum {
   def main(args: Array[String]): Unit = {
 
-    val arr: Array[Int] = Array(-4, -1, 0, 3, 10)
+    /*val arr: Array[Int] = Array(-4, -1, 0, 3, 10)
     val node: TreeNode = TreeNode.mkTree("1,2,3,4,null,6,null,8")
     val i1 = new TreeNode().beforeTraverse(node)
     val i2 = new TreeNode().afterTraverse(node)
     val i3 = new TreeNode().sequenceTraverse(node)
     printf("前序: %s\n", i1.toString)
     printf("后序: %s\n", i2.toString)
-    printf("层序: %s\n", i3.toString)
+    printf("层序: %s\n", i3.toString)*/
+    val l1: ListNode = ListNode.createListNode(Array(10, 1, 13, 6, 9, 5))
+    val l2: ListNode =ListNode.createListNode(Array(1000000,1000001,1000002))
+    val node: ListNode = mergeInBetween(l1, 3, 4, l2)
+    ListNode.printListNode(node)
 
-    println(intersection(Array(1,2,2,1),Array(2,2)))
   }
 
   def findAllPeople(n: Int, meetings: Array[Array[Int]], firstPerson: Int): List[Int] = {
@@ -48,7 +52,33 @@ object testNum {
 
   def intersection(nums1: Array[Int], nums2: Array[Int]): Array[Int] = {
     nums1.distinct.filter(nums2.distinct.contains(_))
-        
-    }
 
+  }
+
+  def mergeInBetween(list1: ListNode, a: Int, b: Int, list2: ListNode): ListNode = {
+    var dummy = new ListNode(0, list1)
+    var workList1: ListNode = null
+    var workList2: ListNode = null
+    var workList3: ListNode = list2
+    var workB: Int = b + 1
+    var workA: Int = a
+    while (dummy.next != null) {
+      workA -= 1
+      workB -= 1
+      dummy = dummy.next
+      if (workA == 0) workList1 = dummy
+      if (workB == 0) {
+        workList2 = dummy
+      }
+    }
+    if (workList1 == null) workList1 = list1
+    workList1.next = list2
+
+    while (workList3.next != null) {
+      workList3 = workList3.next
+    }
+    workList3.next = workList2.next
+
+    list1
+  }
 }
