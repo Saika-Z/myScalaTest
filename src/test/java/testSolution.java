@@ -15,7 +15,7 @@ public class testSolution {
     public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
         ListNode dummy = new ListNode(0, list1);
         ListNode workList1 = null, workList2 = null;
-        b+=1;
+        b += 1;
         while (dummy.next != null) {
             a -= 1;
             b -= 1;
@@ -29,7 +29,7 @@ public class testSolution {
         }
         if (workList1 == null) workList1 = list1;
         workList1.next = list2;
-        while (list2.next!=null){
+        while (list2.next != null) {
             list2 = list2.next;
         }
         list2.next = workList2.next;

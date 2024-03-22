@@ -25,7 +25,7 @@ object testNum {
     printf("后序: %s\n", i2.toString)
     printf("层序: %s\n", i3.toString)*/
     val l1: ListNode = ListNode.createListNode(Array(10, 1, 13, 6, 9, 5))
-    val l2: ListNode =ListNode.createListNode(Array(1000000,1000001,1000002))
+    val l2: ListNode = ListNode.createListNode(Array(1000000, 1000001, 1000002))
     val node: ListNode = mergeInBetween(l1, 3, 4, l2)
     ListNode.printListNode(node)
 
@@ -53,6 +53,29 @@ object testNum {
   def intersection(nums1: Array[Int], nums2: Array[Int]): Array[Int] = {
     nums1.distinct.filter(nums2.distinct.contains(_))
 
+  }
+
+  def isPalindrome(head: ListNode): Boolean = {
+    var slow: ListNode = head
+    var fast: ListNode = head
+    var prev: ListNode = null
+    var next: ListNode = head
+
+    while (fast != null && fast.next != null) {
+      fast = fast.next.next // Move fast pointer
+      next = slow.next // Store next node for reversing
+      slow.next = prev // Reverse the slow pointer's next node
+      prev = slow // Update prev to current slow node
+      slow = next // Move slow pointer
+    }
+    if (fast != null) slow = slow.next
+
+    while (slow != null) {
+      if (slow.x != prev.x) return false
+      slow = slow.next
+      prev = prev.next
+    }
+    true
   }
 
   def mergeInBetween(list1: ListNode, a: Int, b: Int, list2: ListNode): ListNode = {
