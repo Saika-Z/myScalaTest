@@ -24,11 +24,13 @@ object testNum {
     printf("前序: %s\n", i1.toString)
     printf("后序: %s\n", i2.toString)
     printf("层序: %s\n", i3.toString)*/
-    val l1: ListNode = ListNode.createListNode(Array(10, 1, 13, 6, 9, 5))
-    val l2: ListNode = ListNode.createListNode(Array(1000000, 1000001, 1000002))
+    val l1: ListNode = ListNode.createListNode(Array(1,2,3,4))
+    /*val l2: ListNode = ListNode.createListNode(Array(1000000, 1000001, 1000002))
     val node: ListNode = mergeInBetween(l1, 3, 4, l2)
-    ListNode.printListNode(node)
-
+    ListNode.printListNode(node)*/
+    ListNode.printListNode(l1)
+    reorderList(l1)
+    ListNode.printListNode(l1)
   }
 
   def findAllPeople(n: Int, meetings: Array[Array[Int]], firstPerson: Int): List[Int] = {
@@ -55,6 +57,32 @@ object testNum {
 
   }
 
+  def reorderList(head: ListNode): Unit = {
+    var current: ListNode = head
+    var reList: ListNode = head
+    val list = scala.collection.mutable.ListBuffer.empty[Int]
+    val arr = scala.collection.mutable.ListBuffer.empty[Int]
+    while (current != null) {
+      list += current.`val`
+      current = current.next
+    }
+    arr += head.`val`
+    var i = 1
+    var j = list.size - 1
+    while (i <= j) {
+      arr += list(j)
+      if (i != j) arr += list(i)
+      i += 1
+      j -= 1
+    }
+    i = 1
+    while (i < arr.size) {
+      reList.next = new ListNode(arr(i))
+      reList = reList.next
+      i += 1
+    }
+  }
+
   def isPalindrome(head: ListNode): Boolean = {
     var slow: ListNode = head
     var fast: ListNode = head
@@ -71,7 +99,7 @@ object testNum {
     if (fast != null) slow = slow.next
 
     while (slow != null) {
-      if (slow.x != prev.x) return false
+      if (slow.`val` != prev.`val`) return false
       slow = slow.next
       prev = prev.next
     }

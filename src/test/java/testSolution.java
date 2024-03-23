@@ -50,4 +50,67 @@ public class testSolution {
         return s.substring(min, max + 1);
     }
 
+    public void reorderList(ListNode head) {
+        ListNode current = head;
+
+        List<Integer> list = new ArrayList<>();
+        List<Integer> arr = new ArrayList<>();
+        while (current != null) {
+            list.add(current.val);
+            current = current.next;
+        }
+        arr.add(head.val);
+        int i = 1, j = list.size() - 1;
+        while (i <= j) {
+            arr.add(list.get(j));
+            if (i != j)
+                arr.add(list.get(i));
+            i += 1;
+            j -= 1;
+
+        }
+
+        for (int k = 1; k < arr.size(); k++) {
+            head.next = new ListNode(arr.get(k));
+            head = head.next;
+        }
+        // Your runtime beats 10.79 % of java submissions
+        // Your memory usage beats 99.35 % of java submissions (46.6 MB)
+        /*
+          if (head.next == null || head.next.next == null)
+                      return;
+                  ListNode slow = head;
+                  ListNode fast = head.next.next;
+                  while (fast != null && fast.next != null) {
+                      slow = slow.next;
+                      fast = fast.next.next;
+                  }
+                  fast = null;
+                  ListNode curr = slow.next;
+                  while (curr != null) {
+                      ListNode temp1 = curr.next;
+                      curr.next = fast;
+                      fast = curr;
+                      curr = temp1;
+                  }
+                  slow.next = fast;
+                  fast = head;
+                  slow = slow.next;
+                  curr = slow;
+                  ListNode temp2 = fast.next;
+                  ListNode temp1 = slow.next;
+                  while (fast.next != curr) {
+                      temp2 = fast.next;
+                      temp1 = slow.next;
+                      fast.next = slow;
+                      slow.next = temp2;
+                      fast = temp2;
+                      slow = temp1;
+                  }
+                  fast.next = slow;
+                  // Your runtime beats 88.69 % of java submissions
+                  // Your memory usage beats 10.03 % of java submissions (48.7 MB)
+*/
+    }
+
 }
