@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- 指定默认文件系统为 nameservice（对应你 hdfs-site.xml 中的 dfs.nameservices 值） -->
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://mycluster</value>
+    <description>Default HDFS nameservice for this client</description>
+  </property>
+
+  <!-- 可选：设置 Hadoop 临时目录（本地测试时可用） -->
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/tmp/hadoop-${user.name}</value>
+    <description>Local temp dir for Hadoop (change to an existing path on Windows if needed)</description>
+  </property>
+
+  <!-- 可选：降低客户端日志级别（若集群/运行时优先级允许） -->
+  <!-- 这项通常不是 core-site 的职责，但保留为参考：
+  <property>
+    <name>hadoop.root.logger</name>
+    <value>ERROR,console</value>
+  </property>
+  -->
+</configuration>
